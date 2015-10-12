@@ -1,13 +1,14 @@
-function create_GA(init_field, select_mutate_func, fit_func, pop_size, chrom_size)
+function create_ga(init_field, select_mutate_func, fit_func, pop_size, chrom_size)
 {
 	//make population
 	var population = [];
 	var fitnesses = [];
 	var maxfit = -Number.MAX_VALUE;
+    var best_chromo = [];
 	
 	
 	for (var i = 0 ; i < pop_size; i++)	{
-		var member = []
+		var member = [];
 		for (var j = 0; j < chrom_size; j++) {
 			 member[j] = init_field(j);			
 		}
@@ -27,6 +28,7 @@ function create_GA(init_field, select_mutate_func, fit_func, pop_size, chrom_siz
 				
 				if (fitnesses[i] > maxfit)
 				{
+                    best_chromo = population[i];
 					maxfit = fitnesses[i];
 					console.log("New best (: " + -maxfit);
 				}
@@ -44,7 +46,7 @@ function create_GA(init_field, select_mutate_func, fit_func, pop_size, chrom_siz
 		}
 	}
 	
-	return {run_for: run_for}
+	return {run_for: run_for};
 }
 
-module.exports = create_GA ;
+module.exports = create_ga ;
